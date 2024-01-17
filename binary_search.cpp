@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+pair<int, int> firstlast(int arr[], int key, int n ){
+    int first = -1;
+    int last = -1;
+    for(int i=0;i<n;i++){
+        if(arr[i]==key){
+            if(first==-1){
+                first=i;
+                last=i;
+            }
+            else{
+                last=i;
+            }
+        }
+
+    }
+    return{first,last};
+
+}
+int binary (int arr[], int key, int n){
+    int lo = 0;
+    int hi = n-1;
+    int mid;
+    while(lo<=hi){
+        mid=(lo+hi)/2;
+        if(arr[mid]==key){
+            return mid;
+        }
+        else if(arr[mid]>key){
+            hi=mid-1;
+        }
+        else{
+            lo = mid+1;
+        }
+    }
+    return -1;
+}
+int main(){
+    int n;
+    cin>>n;
+
+    int arr[n];
+    for(int i=0; i<n; i++){
+        cin>>arr[i];
+    }
+
+    int key;
+    cin>>key;
+
+    pair<int,int> p=firstlast(arr,key,n);
+    cout<<p.first<<" "<<p.second<<endl;
+    return 0;
+}
